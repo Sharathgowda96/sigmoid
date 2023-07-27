@@ -7,10 +7,11 @@ jobs:
       - checkout  # Check out the code from the repository
       - run:
           name: Run tests
-          command: python3 hello.py  # Replace with the command to run your tests
-		   git add .
-		   git commit -m "updated"
-		   git push origin main
+          command: | 
+		python3 hello.py  # Replace with the command to run your tests
+		git add .
+		git commit -m "updated"
+		git push origin main
 
 
 workflows:

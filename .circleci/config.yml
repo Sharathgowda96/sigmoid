@@ -10,13 +10,6 @@ jobs:
           command: |
 		python3 hello.py  # Replace with the command to run your tests
 		
-      - run:
-	  name: git command
-          command: |
-		git add .
-		git commit -m "updated"
-		git push origin main
-
 
 workflows:
   version: 2

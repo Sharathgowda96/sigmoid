@@ -10,9 +10,6 @@ jobs:
           command: python3 hello.py  # Replace with the command to run your tests
 workflows:
   version: 2
-  build-and-deploy-workflow:
-workflows:
-  version: 2
   main-branch-workflow:
     jobs:
       - build:

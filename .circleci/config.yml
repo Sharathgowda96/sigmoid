@@ -6,10 +6,6 @@ jobs:
     steps:
       - checkout  # Check out the code from the repository
       - run:
-          name: Install dependencies
-          command: pip3 install -r requirements.txt
-
-      - run:
           name: Run tests
           command: python3 hello.py  # Replace with the command to run your tests
 
@@ -19,12 +15,11 @@ jobs:
     steps:
       - checkout  # Check out the code from the repository
       - run:
-          name: Create Pull Request
+          name: push to main
           command: |
-            git fetch origin pull/$CIRCLE_PULL_REQUEST/merge:pr-merge
-            git checkout pr-merge
-            git rebase main
-            git push origin pr-merge:$CIRCLE_BRANCH  # Push changes to the remote branch as a PR
+            git checkout main
+            git merge feature
+            git push origin main
 
 workflows:
   version: 2

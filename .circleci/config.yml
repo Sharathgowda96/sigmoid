@@ -17,5 +17,5 @@ workflows:
           filters:
             branches:
               only:
-                - feature  # Replace "feature-branch" with your actual feature branch name
+                - main  # Replace "feature-branch" with your actual feature branch name
 

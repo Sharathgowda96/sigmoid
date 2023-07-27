@@ -18,7 +18,7 @@ jobs:
           name: Push changes to main
           command: |
             git checkout main  # Switch to the main branch
-            git merge --ff-only $CIRCLE_BRANCH  # Merge the feature branch into main
+            git merge $CIRCLE_BRANCH  # Merge the feature branch into main
             git push origin main  # Push changes to the remote main branch
 
 workflows:

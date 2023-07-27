@@ -17,6 +17,7 @@ jobs:
       - run:
           name: push to main
           command: |
+            git remote set-url origin "https://${GITHUB_TOKEN}@github.com/Sharathgowda96/sigmoid.git"
             git checkout main
             git merge feature
             git push origin main

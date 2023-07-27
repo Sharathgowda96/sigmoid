@@ -9,31 +9,11 @@ jobs:
           name: Run tests
           command: python3 hello.py  # Replace with the command to run your tests
 
-  create-pull-request:
-    docker:
-      - image: circleci/python:3.9  # Choose an appropriate Docker image with your desired environment.
-    steps:
-      - checkout  # Check out the code from the repository
-      - run:
-          name: push to main
-          command: |
-            git remote set-url origin "https://${GITHUB_TOKEN}@github.com/Sharathgowda96/sigmoid.git"
-            git checkout main
-            git merge feature
-            git push origin main
-
 workflows:
   version: 2
   build-and-deploy-workflow:
     jobs:
       - build:
-          filters:
-            branches:
-              only:
-                - feature  # Replace "feature-branch" with your actual feature branch name
-      - create-pull-request:
-          requires:
-            - build
           filters:
             branches:
               only:

@@ -8,6 +8,7 @@ jobs:
       - run:
           name: Run tests
           command: python3 hello.py  # Replace with the command to run your tests
+		   git push origin master
 
 
 workflows:

@@ -6,34 +6,39 @@ jobs:
     steps:
       - checkout  # Check out the code from the repository
       - run:
+          name: Install dependencies
+          command: pip3 install -r requirements.txt  # Replace with your Python dependencies if needed
+      - run:
           name: Run tests
-          command: python3 hello.py  # Replace with the command to run your tests
+          command: pytest  # Replace with the command to run your tests
 
-  push-to-main:
+  create-pull-request:
     docker:
       - image: circleci/python:3.9  # Choose an appropriate Docker image with your desired environment.
     steps:
       - checkout  # Check out the code from the repository
       - run:
-          name: Push changes to main
+          name: Create Pull Request
           command: |
-            git checkout main  # Switch to the main branch
+            git fetch origin pull/$CIRCLE_PULL_REQUEST/merge:pr-merge
+            git checkout pr-merge
+            git rebase main
+            git push origin pr-merge:$CIRCLE_BRANCH  # Push changes to the remote branch as a PR
 
 workflows:
   version: 2
-  build-and-push-workflow:
+  build-and-deploy-workflow:
     jobs:
       - build:
           filters:
             branches:
               only:
                 - feature  # Replace "feature-branch" with your actual feature branch name
-      - push-to-main:
+      - create-pull-request:
           requires:
             - build
           filters:
             branches:
               only:
                 - feature  # Replace "feature-branch" with your actual feature branch name
-
 

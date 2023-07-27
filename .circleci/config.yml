@@ -18,7 +18,6 @@ jobs:
           name: Push changes to main
           command: |
             git checkout main  # Switch to the main branch
-            git push origin main  # Push changes to the remote main branch
 
 workflows:
   version: 2

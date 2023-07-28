@@ -1,21 +1,45 @@
 version: 2.1
 jobs:
+  test:
+    docker:
+      - image: circleci/node:latest  # Replace with the appropriate Docker image for your project
+    steps:
+      - checkout
+      - run: python3 hello.py # Add your test commands here
   build:
     docker:
-      - image: circleci/python:3.9  # Choose an appropriate Docker image with your desired environment.
+      - image: circleci/node:latest  # Replace with the appropriate Docker image for your project
     steps:
-      - checkout  # Check out the code from the repository
-      - run:
-          name: Run tests
-          command: python3 hello.py  # Replace with the command to run your tests
- 
+      - checkout
+      - run: echo "Building..."
+      # Add your build commands here
+  deploy:
+    docker:
+      - image: circleci/node:latest  # Replace with the appropriate Docker image for your project
+    steps:
+      - checkout
+      - run: echo "Deploying..."
+      # Add your deployment commands here
+
 workflows:
   version: 2
-  feature-branch-workflow:
+  test_build_deploy:
     jobs:
+      - test:
+          filters:
+            branches:
+              ignore:
+                - main
       - build:
           filters:
             branches:
               only:
-                - feature  # Replace "feature-branch" with your actual feature branch name
+                - develop
+      - deploy:
+          filters:
+            branches:
+              only:
+                - main
+
+
 

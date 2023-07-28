@@ -2,15 +2,15 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: circleci/node:latest  # Replace with the appropriate Docker image for your project
+      - image: circleci/node:latest
     steps:
       - checkout
       - run:
          name: run test
-         command: python3 hello.py # Add your test commands here
+         command: python3 hello.py # Add your test command here
   build:
     docker:
-      - image: circleci/node:latest  # Replace with the appropriate Docker image for your project
+      - image: circleci/node:latest
     steps:
       - checkout
       - run: 
@@ -19,7 +19,7 @@ jobs:
       # Add your build commands here
   deploy:
     docker:
-      - image: circleci/node:latest  # Replace with the appropriate Docker image for your project
+      - image: circleci/node:latest
     steps:
       - checkout
       - run: 
@@ -40,7 +40,7 @@ workflows:
           filters:
             branches:
               only:
-                - develop
+                - feature
       - deploy:
           filters:
             branches:

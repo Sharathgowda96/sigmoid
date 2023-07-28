@@ -1,5 +1,16 @@
 version: 2.1
 jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - run: 
+         name: build update
+         command: |
+           sudo apt-get update
+           echo "Building..."
+      # Add your build commands here
   test:
     docker:
       - image: circleci/node:latest
@@ -8,15 +19,6 @@ jobs:
       - run:
          name: run test
          command: python3 hello.py # Add your test command here
-  build:
-    docker:
-      - image: circleci/node:latest
-    steps:
-      - checkout
-      - run: 
-         name: build on develop branch
-         command: echo "Building..."
-      # Add your build commands here
   deploy:
     docker:
       - image: circleci/node:latest

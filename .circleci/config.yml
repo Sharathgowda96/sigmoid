@@ -9,7 +9,7 @@ jobs:
          name: build update
          command: |
            sudo apt-get update
-           echo "Building..."
+           echo "Successfully Build"
       # Add your build commands here
   test:
     docker:

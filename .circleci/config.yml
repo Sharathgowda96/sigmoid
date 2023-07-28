@@ -5,20 +5,26 @@ jobs:
       - image: circleci/node:latest  # Replace with the appropriate Docker image for your project
     steps:
       - checkout
-      - run: python3 hello.py # Add your test commands here
+      - run:
+         name: run test
+         command: python3 hello.py # Add your test commands here
   build:
     docker:
       - image: circleci/node:latest  # Replace with the appropriate Docker image for your project
     steps:
       - checkout
-      - run: echo "Building..."
+      - run: 
+         name: build on develop branch
+         command: echo "Building..."
       # Add your build commands here
   deploy:
     docker:
       - image: circleci/node:latest  # Replace with the appropriate Docker image for your project
     steps:
       - checkout
-      - run: echo "Deploying..."
+      - run: 
+         name: run deployment
+         command: echo "Deploying..."
       # Add your deployment commands here
 
 workflows:

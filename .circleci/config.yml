@@ -25,8 +25,8 @@ jobs:
     steps:
       - checkout
       - run: 
-         name: run deployment
-         command: echo "Deploying..."
+         name: run deployment 
+         command: echo "Successfully Deploy"
       # Add your deployment commands here
 
 workflows:

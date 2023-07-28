@@ -37,7 +37,7 @@ workflows:
           filters:
             branches:
               ignore:
-                - main
+                - feature
       - build:
           filters:
             branches:

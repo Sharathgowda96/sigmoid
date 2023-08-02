@@ -1,9 +1,7 @@
 version: 2.1
 
 orbs:
-  docker: circleci/docker@1.5.0
   python: circleci/python@0.3.2
-  aws-cli: circleci/aws-cli@0.1.20
   terraform: circleci/terraform@2.0.0
 
 executors:
@@ -15,9 +13,6 @@ executors:
 workflows:
   deploy_infra:
     jobs:
-    - terraform/init:
-        checkout: true
-        context: terraform
     - terraform/validate:
         checkout: true
         context: terraform

@@ -28,7 +28,10 @@ jobs:
          name: run deployment 
          command: echo "Successfully Deploy"
       # Add your deployment commands here
-
+# https://circleci.com/developer/orbs/orb/circleci/terraform
+version: '2.1'
+orbs:
+  terraform: circleci/terraform@1.2.1
 workflows:
   version: 2
   test_build_deploy:
@@ -38,16 +41,35 @@ workflows:
             branches:
               ignore:
                 - feature
+      - terraform/validate:
+        checkout: true
+        context: terraform
+      - terraform/plan:
+        checkout: true
+        context: terraform
+        persist-workspace: true
+        requires:
+        - terraform/validate
+        
       - build:
           filters:
             branches:
               only:
                 - feature
+                
       - deploy:
           filters:
             branches:
               only:
                 - main
+      - terraform/apply:
+        attach-workspace: true
+        context: terraform
+        filters:
+          branches:
+            only: main
+        requires:
+        - terraform/plan
 
 
 
